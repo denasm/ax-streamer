@@ -93,8 +93,8 @@
 
     <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 const firebaseConfig1 = {
 apiKey: "AIzaSyDCBY5jPucTAh8sfPy2kTvivfDlfXvnQnQ",
 authDomain: "panel-streamer.firebaseapp.com",
@@ -107,7 +107,8 @@ measurementId: "G-5RLT4K1P4Z"
 
 };
 const app1 = initializeApp(firebaseConfig1);
-const auth = getAuth(app1);
+const db = getDatabase(app1);
+const auth = getAuth(db);
 let hwid;
 
 document.getElementById("lgnbtn").addEventListener('click',checkData);
