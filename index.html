@@ -93,6 +93,7 @@
 
     <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import {
   getDatabase,
   ref, 
@@ -114,7 +115,8 @@ measurementId: "G-5RLT4K1P4Z"
 
 };
 const app1 = initializeApp(firebaseConfig1);
-const db = getDatabase(app1);
+const auth = getAuth(app1);
+const db = getDatabase(auth);
 let hwid;
 
 document.getElementById("lgnbtn").addEventListener('click',checkData);
