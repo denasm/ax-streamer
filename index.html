@@ -120,16 +120,6 @@ const db = getDatabase(auth);
 let hwid;
 
 document.getElementById("lgnbtn").addEventListener('click',checkData);
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
 const msg = document.getElementById('msg');
 
 const idinput = document.getElementById("keyinp");
@@ -186,7 +176,7 @@ function updtCons(msg){
 }
 
 function checkData(){
-  const dbRef = ref(db);
+  const dbRef = ref(auth);
   let id = idinput.value;
   let pss = pssinput.value;
 
@@ -217,7 +207,7 @@ function checkData(){
             localStorage.setItem('lgn-pss',"");
           }
           
-  const msgRef = ref(db, `Accounts/${hwid}/msg`);
+  const msgRef = ref(auth, `Accounts/${hwid}/msg`);
 
     onValue(msgRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -273,7 +263,7 @@ function checkData(){
 
   function btnclicked(value,lcn){
     console.log("clicked");
-    let mbRef =  ref(db, `Accounts/${hwid}/controls/${lcn}`);
+    let mbRef =  ref(auth, `Accounts/${hwid}/controls/${lcn}`);
 
     set(mbRef, value)
     .then(() => {
@@ -283,7 +273,7 @@ function checkData(){
   }
 
   function resetData(){
-    let mbRef =  ref(db, `Accounts/${hwid}/controls/`);
+    let mbRef =  ref(auth, `Accounts/${hwid}/controls/`);
     const dts = {
       aimbot : "3",
       location : "3",
@@ -298,7 +288,7 @@ function checkData(){
     .then(() => {
     });
 
-    let mbRef2 =  ref(db, `Accounts/${hwid}/msg`);
+    let mbRef2 =  ref(auth, `Accounts/${hwid}/msg`);
     
     set(mbRef2, "")
     .then(() => {
