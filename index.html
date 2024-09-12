@@ -94,14 +94,6 @@
     <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
-import {
-  getDatabase,
-  ref, 
-  child,
-  get,
-  onValue,
-  set
-} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
 
 const firebaseConfig1 = {
 apiKey: "AIzaSyDCBY5jPucTAh8sfPy2kTvivfDlfXvnQnQ",
@@ -116,7 +108,6 @@ measurementId: "G-5RLT4K1P4Z"
 };
 const app1 = initializeApp(firebaseConfig1);
 const auth = getAuth(app1);
-const db = getDatabase(auth);
 let hwid;
 
 document.getElementById("lgnbtn").addEventListener('click',checkData);
