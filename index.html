@@ -15,7 +15,7 @@
                 <span></span>
                 <span></span>
                 <span></span>
-                <input type="text" id="keyinp" placeholder="email" required>
+                <input type="email" id="keyinp" placeholder="email" required>
                 <i class='bx bxs-user'></i>
             </div>
             <span id="space1"></span>
@@ -118,6 +118,8 @@ const app1 = initializeApp(firebaseConfig1);
 const auth = getAuth(app1);
 const db = getDatabase(auth);
 let hwid;
+
+document.getElementById("lgnbtn").addEventListener('click',checkData);
 signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
@@ -128,7 +130,6 @@ signInWithEmailAndPassword(auth, email, password)
     const errorCode = error.code;
     const errorMessage = error.message;
   });
-document.getElementById("lgnbtn").addEventListener('click',checkData);
 const msg = document.getElementById('msg');
 
 const idinput = document.getElementById("keyinp");
