@@ -93,7 +93,7 @@
 
     <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
 import {
   getDatabase,
   ref, 
@@ -118,7 +118,16 @@ const app1 = initializeApp(firebaseConfig1);
 const auth = getAuth(app1);
 const db = getDatabase(auth);
 let hwid;
-
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+  });
 document.getElementById("lgnbtn").addEventListener('click',checkData);
 const msg = document.getElementById('msg');
 
