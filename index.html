@@ -107,8 +107,9 @@ measurementId: "G-5RLT4K1P4Z"
 
 };
 const app1 = initializeApp(firebaseConfig1);
-const db = getDatabase(app1);
-const auth = getAuth(db);
+const auth = getAuth(app1);
+const db = getDatabase(auth);
+
 let hwid;
 
 document.getElementById("lgnbtn").addEventListener('click',checkData);
@@ -168,7 +169,7 @@ function updtCons(msg){
 }
 
 function checkData(){
-  const dbRef = ref(auth);
+  const dbRef = ref(db);
   let id = idinput.value;
   let pss = pssinput.value;
 
@@ -199,7 +200,7 @@ function checkData(){
             localStorage.setItem('lgn-pss',"");
           }
           
-  const msgRef = ref(auth, `Accounts/${hwid}/msg`);
+  const msgRef = ref(db, `Accounts/${hwid}/msg`);
 
     onValue(msgRef, (snapshot) => {
       if (snapshot.exists()) {
@@ -255,7 +256,7 @@ function checkData(){
 
   function btnclicked(value,lcn){
     console.log("clicked");
-    let mbRef =  ref(auth, `Accounts/${hwid}/controls/${lcn}`);
+    let mbRef =  ref(db, `Accounts/${hwid}/controls/${lcn}`);
 
     set(mbRef, value)
     .then(() => {
@@ -265,7 +266,7 @@ function checkData(){
   }
 
   function resetData(){
-    let mbRef =  ref(auth, `Accounts/${hwid}/controls/`);
+    let mbRef =  ref(db, `Accounts/${hwid}/controls/`);
     const dts = {
       aimbot : "3",
       location : "3",
@@ -280,7 +281,7 @@ function checkData(){
     .then(() => {
     });
 
-    let mbRef2 =  ref(auth, `Accounts/${hwid}/msg`);
+    let mbRef2 =  ref(db, `Accounts/${hwid}/msg`);
     
     set(mbRef2, "")
     .then(() => {
