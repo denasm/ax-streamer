@@ -110,7 +110,11 @@ const auth = getAuth(app1);
 const db = getDatabase(auth);
 
 let hwid;
-
+        
+const starCountRef = ref(db, 'posts/' + postId + '/starCount');
+onValue(starCountRef, (snapshot) => {
+  const data = snapshot.val();
+  updateStarCount(postElement, data);
 document.getElementById("lgnbtn").addEventListener('click',Auth);
 const msg = document.getElementById('msg');
 
